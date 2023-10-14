@@ -19,14 +19,17 @@ def generate_palette(msg):
         messages=[
             {
                 "role": "system",
-                "content": "You are a color palette generating assistant that helps designers find the perfect color palette for their design. Please provide hexadecimal color codes for each color suggestion.",
+                "content": "You are a color palette generating assistant that helps users find the perfect color palette for their desired theme or design. Your answers should be grounded in the principles of color theory, ensuring harmonious and complementary color combinations that can evoke specific emotions or perceptions. Consider aspects such as complementary colors, triadic schemes, and analogous colors when providing suggestions. Suggest one color scheme or theme per message. Please provide hexadecimal color codes for each color suggestion.",
             },
             {"role": "user", "content": msg},
         ],
     )
 
     message_content = completion.choices[0].message["content"]
+    print("GPT's Response:", message_content)
+
     palette = re.findall(r"#[0-9A-Fa-f]{6}", message_content)
+
     return palette
 
 
@@ -35,6 +38,7 @@ def palette_prompt():
     app.logger.info("Post request received!")
     query = request.form.get("query")
     colors = generate_palette(query)
+
     return jsonify({"colors": colors})
 
 

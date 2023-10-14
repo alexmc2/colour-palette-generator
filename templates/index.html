@@ -6,8 +6,9 @@
     <title>Color Palette Generator</title>
 
     <style>
-      h1 {
-        color: purple;
+      html,
+      body {
+        margin: 0;
       }
 
       .container {
@@ -18,12 +19,13 @@
       }
       .color {
         height: 100%;
-        
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
       }
     </style>
   </head>
   <body>
-
     <div class="container"></div>
 
     <form id="form">
@@ -38,6 +40,7 @@
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         const query = form.elements.query.value;
+
         fetch('/palette', {
           method: 'POST',
           headers: {
@@ -57,6 +60,10 @@
               div.classList.add('color');
               div.style.backgroundColor = color;
               div.style.width = `calc(100% / ${colors.length})`;
+
+              const span = document.createElement('span');
+              span.innerText = color;
+              div.appendChild(span);
               container.appendChild(div);
             }
           });
