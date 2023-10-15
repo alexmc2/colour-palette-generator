@@ -15,6 +15,9 @@ app = Flask(__name__,
             static_url_path='',
             static_folder='static'
             )
+app.config["ENV"] = "production"
+app.config["DEBUG"] = False
+
 
 
 def generate_palette(msg):
@@ -51,5 +54,4 @@ def index():
     return render_template("index.html")
 
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True)
+
