@@ -5,6 +5,7 @@ import re
 import openai
 from dotenv import load_dotenv
 from flask import jsonify
+import time
 
 
 load_dotenv()
@@ -17,7 +18,6 @@ app = Flask(__name__,
             )
 app.config["ENV"] = "production"
 app.config["DEBUG"] = False
-
 
 
 def generate_palette(msg):
@@ -42,9 +42,17 @@ def generate_palette(msg):
 
 @app.route("/palette", methods=["POST"])
 def palette_prompt():
+    start_time = time.time()
     app.logger.info("Post request received!")
+
     query = request.form.get("query")
+
+    app.logger.info(f"Generating palette for query: {query}")
     colors = generate_palette(query)
+
+    end_time = time.time()
+    app.logger.info(
+        f"Time taken for OpenAI call: {end_time - start_time} seconds")
 
     return jsonify({"colors": colors})
 
@@ -52,6 +60,3 @@ def palette_prompt():
 @app.route("/")
 def index():
     return render_template("index.html")
-
-
-
