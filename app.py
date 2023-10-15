@@ -10,7 +10,11 @@ from flask import jsonify
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-app = Flask(__name__, template_folder="templates")
+app = Flask(__name__,
+            template_folder='templates',
+            static_url_path='',
+            static_folder='static'
+            )
 
 
 def generate_palette(msg):
