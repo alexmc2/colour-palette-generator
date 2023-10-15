@@ -21,6 +21,9 @@ app.config["ENV"] = "production"
 app.config["DEBUG"] = False
 
 
+HEX_COLOR_PATTERN = re.compile(r"#[0-9A-Fa-f]{6}")
+
+
 def generate_palette(msg):
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
@@ -34,26 +37,22 @@ def generate_palette(msg):
     )
 
     message_content = completion.choices[0].message["content"]
-    print("GPT's Response:", message_content)
 
-    palette = re.findall(r"#[0-9A-Fa-f]{6}", message_content)
+    # Using the pre-compiled pattern
+    palette = HEX_COLOR_PATTERN.findall(message_content)
 
     return palette
 
 
 @app.route("/palette", methods=["POST"])
 def palette_prompt():
-    start_time = time.time()
-    app.logger.info("Post request received!")
+
+    # app.logger.info("Post request received!")
 
     query = request.form.get("query")
 
-    app.logger.info(f"Generating palette for query: {query}")
+    # app.logger.info(f"Generating palette for query: {query}")
     colors = generate_palette(query)
-
-    end_time = time.time()
-    app.logger.info(
-        f"Time taken for OpenAI call: {end_time - start_time} seconds")
 
     return jsonify({"colors": colors})
 
