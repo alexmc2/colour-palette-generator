@@ -76,7 +76,7 @@ form.addEventListener('submit', function (e) {
       colors.push(el.innerText);
     });
 
-    const copyText = colors.join(', '); //join colours
+    const copyText = colors.join(', '); 
     navigator.clipboard.writeText(copyText);
   });
 });
