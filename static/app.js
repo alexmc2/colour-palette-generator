@@ -1,7 +1,9 @@
 const form = document.querySelector('#form');
+const spinner = document.getElementById('spinner');
 
 form.addEventListener('submit', function (e) {
   e.preventDefault();
+  spinner.classList.remove('hidden'); // Show spinner when API call starts
   getColours();
 
   function getColours() {
@@ -17,19 +19,35 @@ form.addEventListener('submit', function (e) {
     })
       .then((res) => res.json())
       .then((data) => {
+        spinner.classList.add('hidden'); // Hide the spinner when done
+        form.classList.add('hidden-lg-down');
         const colors = data.colors;
-        const container = document.querySelector('.container');
-        createColourBox(colors, container);
+        const colourContainer = document.querySelector('.colourContainer');
+        createColourBox(colors, colourContainer);
       });
   }
+  const restartButton = document.getElementById('restart');
 
-  function createColourBox(colors, container) {
-    container.innerHTML = '';
+  restartButton.addEventListener('click', function () {
+    location.reload();
+  });
+
+  function createColourBox(colors, colourContainer) {
+    colourContainer.innerHTML = '';
     for (const color of colors) {
       const div = document.createElement('div');
-      div.classList.add('color');
+      div.classList.add(
+        'color',
+        'h-full',
+        'flex',
+        'justify-center',
+        'items-end',
+        'transition-opacity',
+        'duration-300',
+        'hover:cursor-pointer',
+        'active:opacity-80'
+      );
       div.style.backgroundColor = color;
-      div.style.width = `calc(100% / ${colors.length})`;
 
       div.addEventListener('click', function () {
         navigator.clipboard.writeText(color);
@@ -37,8 +55,28 @@ form.addEventListener('submit', function (e) {
 
       const span = document.createElement('span');
       span.innerText = color;
+      span.classList.add(
+        'text-white',
+        'font-bold',
+        'text-xl',
+        'p-2',
+        'text-shadow'
+      );
       div.appendChild(span);
-      container.appendChild(div);
+      colourContainer.appendChild(div);
     }
   }
+
+  const copyAllButton = document.getElementById('copyAll');
+
+  copyAllButton.addEventListener('click', function () {
+    const colorElements = document.querySelectorAll('.color span');
+    const colors = [];
+    colorElements.forEach((el) => {
+      colors.push(el.innerText);
+    });
+
+    const copyText = colors.join(', '); //join colours
+    navigator.clipboard.writeText(copyText);
+  });
 });
