@@ -79,7 +79,16 @@ form.addEventListener('submit', function (e) {
       colors.push(el.innerText);
     });
 
-    const copyText = colors.join(', '); 
-    navigator.clipboard.writeText(copyText);
+    const copyText = colors.join(', ');
+    navigator.clipboard
+      .writeText(copyText)
+      .then(() => {
+        // Clipboard write was successful
+        console.log('Text copied to clipboard:', copyText);
+      })
+      .catch((err) => {
+        // Clipboard write failed
+        console.log('Clipboard write failed:', err);
+      });
   });
 });
