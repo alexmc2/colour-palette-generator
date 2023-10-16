@@ -12,13 +12,13 @@ import random
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-app = Flask(__name__,
-            template_folder='templates',
-            static_url_path='',
-            static_folder='static'
-            )
-app.config["ENV"] = "production"
-app.config["DEBUG"] = False
+application = Flask(__name__,
+                    template_folder='templates',
+                    static_url_path='',
+                    static_folder='static'
+                    )
+application.config["ENV"] = "production"
+application.config["DEBUG"] = False
 
 
 HEX_COLOR_PATTERN = re.compile(r"#[0-9A-Fa-f]{6}")
@@ -44,27 +44,26 @@ def generate_palette(msg):
     return palette
 
 
-@app.route("/palette", methods=["POST"])
+@application.route("/palette", methods=["POST"])
 def palette_prompt():
 
-    # app.logger.info("Post request received!")
+    # application.logger.info("Post request received!")
 
     query = request.form.get("query")
 
-    # app.logger.info(f"Generating palette for query: {query}")
+    # application.logger.info(f"Generating palette for query: {query}")
     colors = generate_palette(query)
 
     return jsonify({"colors": colors})
 
 
-@app.route("/")
+@application.route("/")
 def index():
     return render_template("index.html")
 
 
 if __name__ == "__main__":
-    app.run()
-
+    application.run()
 
 
 # def random_color():
@@ -101,7 +100,7 @@ if __name__ == "__main__":
 #     return "#{:02X}{:02X}{:02X}".format(comp_r, comp_g, comp_b)
 
 
-# @app.route("/random_color", methods=["GET"])
+# @application.route("/random_color", methods=["GET"])
 # def random_color_route():
 
 #     # Generate and return a random color code.
@@ -110,7 +109,7 @@ if __name__ == "__main__":
 #     return jsonify({"color": color})
 
 
-# @app.route("/complementary", methods=["POST"])
+# @application.route("/complementary", methods=["POST"])
 # def complementary_color_route():
 
 #     # compute and return complementary color.
