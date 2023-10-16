@@ -2,7 +2,7 @@
 
 Welcome to my first ever Python project! This colour palette generator is a simple web application that generates colour themes and palettes using the OpenAI API (GPT-3.5-turbo).
 
-**[Link to deployed site](http://colours.eu-north-1.elasticbeanstalk.com/)**
+**[https://colorsapp.link/](https://colorsapp.link/)**
 
 ![Screenshot1](https://user-images.githubusercontent.com/119585058/275351562-045fa6db-0883-4023-bb92-49bdab6bbc81.png)
 
