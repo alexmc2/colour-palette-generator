@@ -12,13 +12,17 @@ Welcome to my first ever Python project! This colour palette generator is a simp
 
 ![Screenshot4](https://user-images.githubusercontent.com/119585058/275353116-643007a6-1722-484e-8b6a-7af066aca2f9.png)
 
+![Screenshot3](https://user-images.githubusercontent.com/119585058/275669012-b8435448-abf2-4100-968c-6a2d4916ac55.png)
+
+![Screenshot4](https://user-images.githubusercontent.com/119585058/275668844-1e26a357-3616-4b7d-8d5e-ec11640b0b87.png)
+
 # Technical details
 
 **Backend:** The application's backend is built using Flask, a micro web framework written in Python. It communicates with the OpenAI API to fetch the colour suggestions.
 
 **OpenAI API:** The color generation comes from the GPT-3.5-turbo model by OpenAI.
 
-**Deployment:** The app is hosted using AWS Elastic Beanstalk and Code Pipeline. It was originally hosted on Vercel but ~70% of the API requests timed out due to Vercel's 15s limit, which meant exploring alternative hosting for the app. 
+**Deployment:** The app is hosted using AWS Elastic Beanstalk and Code Pipeline. It was originally hosted on Vercel but ~70% of the API requests timed out due to Vercel's 15s limit, which meant exploring alternative hosting for the app.
 
 **Other Libraries:** The app also uses libraries such as python-dotenv for environment variable management, and Tailwind CSS for styling and responsive design.
 
