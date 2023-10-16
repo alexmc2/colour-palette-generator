@@ -21,3 +21,5 @@ Welcome to my first ever Python project! This colour palette generator is a simp
 **Deployment:** The app is hosted using AWS Elastic Beanstalk and Code Pipeline. It was originally hosted on Vercel but ~70% of the API requests timed out due to Vercel's 15s limit, which meant exploring alternative hosting for the app. 
 
 **Other Libraries:** The app also uses libraries such as python-dotenv for environment variable management, and Tailwind CSS for styling and responsive design.
+
+**Future Updates** I'll adding more functionality and complexity to this app at a later date.
