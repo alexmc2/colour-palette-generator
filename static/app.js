@@ -1,9 +1,11 @@
 const form = document.querySelector('#form');
 const spinner = document.getElementById('spinner');
+const spinnerMessage = document.getElementById('spinnerMessage');
 
 form.addEventListener('submit', function (e) {
   e.preventDefault();
   spinner.classList.remove('hidden'); // Show spinner when API call starts
+  spinnerMessage.classList.remove('hidden');
   getColours();
 
   function getColours() {
@@ -20,6 +22,7 @@ form.addEventListener('submit', function (e) {
       .then((res) => res.json())
       .then((data) => {
         spinner.classList.add('hidden'); // Hide the spinner when done
+        spinnerMessage.classList.add('hidden');
         form.classList.add('hidden-lg-down');
         const colors = data.colors;
         const colourContainer = document.querySelector('.colourContainer');
