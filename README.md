@@ -2,7 +2,7 @@
 
 Welcome to my first ever Python project! This colour palette generator is a simple web application that generates colour themes and palettes using the OpenAI API (GPT-3.5-turbo).
 
-**[Link to deployed site](https://colour-palette-generator-six.vercel.app/)**
+**[Link to deployed site](http://colours.eu-north-1.elasticbeanstalk.com/)**
 
 ![Screenshot1](https://user-images.githubusercontent.com/119585058/275351562-045fa6db-0883-4023-bb92-49bdab6bbc81.png)
 
@@ -18,6 +18,6 @@ Welcome to my first ever Python project! This colour palette generator is a simp
 
 **OpenAI API:** The color generation comes from the GPT-3.5-turbo model by OpenAI.
 
-**Deployment:** The app is hosted on Vercel.
+**Deployment:** The app is hosted using AWS Elastic Beanstalk and Code Pipeline. It was originally hosted on Vercel but ~70% of the API requests timed out due to Vercel's 15s limit, which meant exploring alternative hosting for the app. 
 
 **Other Libraries:** The app also uses libraries such as python-dotenv for environment variable management, and Tailwind CSS for styling and responsive design.
